@@ -238,6 +238,9 @@ def attack_routine(attack_target)
 			waitrt?
 			waitcastrt?
 			put "incant 435 closed"
+			pause 1
+			waitcastrt
+			fput "mstrike"
 			end
 			return 1
 		else 
