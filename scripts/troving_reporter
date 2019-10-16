@@ -19,7 +19,6 @@ loop {
 		respond " "
 		respond "[TREASURE TROVE] #{HELLO_MESSAGE} #{interval} the next item at the Treasure Trove will pull for: #{cabinet[:shelf]}."
 		respond " "
-		break
 	
 	# Raffle draws and item drops to the rack
 	elsif line =~ /^A hidden panel beneath (.*) opens/
@@ -31,7 +30,6 @@ loop {
 		line = get
 		if line =~ /^And the winner of (.*) is... (.*)!/
 			cabinet[:winner] = $2.to_s
-			break;
 		
 		elseif line =~ /^A mechanical mithril hand emerges from beneath an open panel and replenishes the empty spot along the shelf with (.*?)\./
 			cabinet[:shelf] = $1.to_s
@@ -48,28 +46,24 @@ loop {
 			respond " "
 			respond "[TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{cabinet[:rack]}, it's #{cabinet[:winner]}! #{interval} the next item at the Treasure Trove will pull for: #{cabinet[:shelf]}."
 			respond " "
-			break
 		
 		# Known Winner and End of Day
 		elsif cabinet[:rack] && cabinet[:winner] && !cabinet[:shelf]
 			respond " "
 			respond "[TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{cabinet[:rack]}, it's #{cabinet[:winner]}! #{GOODBYE_MESSAGE}"
 			respond " "
-			break
 		
 		# Unknown Winner and NOT End of Day
 		elsif cabinet[:rack] && !cabinet[:winner] && cabinet[:shelf]
 			respond " "
 			respond "[TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{trove[:latest_prize]}, but we don't know their name because they're not logged in; they have under an hour to claim their win, though. #{interval} the next item at the Treasure Trove will pull for: #{trove[:current_prize]}."
 			respond " "
-			break
 		
 		# Unknown Winner and End of Day
 		elsif cabinet[:rack] && !cabinet[:winner] && !cabinet[:shelf]
 			respond " "
 			respond "[TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{trove[:latest_prize]}, but we don't know their name because they're not logged in; they have under an hour to claim their win, though. #{GOODBYE_MESSAGE}."
 			respond " "
-			break
 		end
 	end	
 	cabinet[:rack] = nil
