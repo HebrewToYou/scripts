@@ -17,7 +17,7 @@ loop {
 	if line =~ /^A mechanical mithril hand emerges from beneath an open panel and replenishes the empty spot along the shelf with (.*?)\./
 		cabinet[:shelf] = $1.to_s
 		respond " "
-		respond "[TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{cabinet[:rack]}, it's #{cabinet[:winner]}! #{GOODBYE_MESSAGE}"
+		respond "[TREASURE TROVE] #{HELLO_MESSAGE} #{interval} the next item at the Treasure Trove will pull for: #{cabinet[:shelf]}."
 		respond " "
 		break
 	
