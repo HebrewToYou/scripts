@@ -1,16 +1,14 @@
 =begin
+	This script exists to report on the Ebon Gate Treasure Trove, specifically reporting the awarded item, the winner of said item, and the next item up for raffle
+	Author: HebrewToYou
+	Version: 1.0.0
+        Date Created: 2019-10-16
+        Date Updated: 2019-10-16
+        game: gs4
+        tags: backup, back up, lich, files, copy
+        Usage: ;troving_reporter
 
-Finds the Treasure Trove Winner and next item for drawing for the TownCrier.
-
-    author: HebrewToYou
-    game: Gemstone
-    tags: towncrier
-    version: 1.0
-
-    Notes: 
-
-    Usage: ;troving_reporter
-    
+        1.0.0 (2019-10-16): Initial Version
 =end
 
 cabinet = Hash.new
