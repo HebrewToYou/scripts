@@ -8,10 +8,7 @@ interval = "In just under 1 hour"
 
 cabinet[:shelf] = ""
 cabinet[:rack] = ""
-cabinet[:winner] = ""
-
-if dothis("look on shelf", "There is nothing on the shelf.")
-	
+cabinet[:winner] = ""	
 
 before_dying do
 	puts cabinet.inspect
