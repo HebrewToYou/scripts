@@ -31,7 +31,7 @@ loop {
 		if line =~ /^And the winner of (.*) is... (.*)!/
 			cabinet[:winner] = $2.to_s
 		
-		elseif line =~ /^A mechanical mithril hand emerges from beneath an open panel and replenishes the empty spot along the shelf with (.*?)\./
+		elsif line =~ /^A mechanical mithril hand emerges from beneath an open panel and replenishes the empty spot along the shelf with (.*?)\./
 			cabinet[:shelf] = $1.to_s
 		end
 		
