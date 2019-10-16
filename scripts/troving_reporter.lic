@@ -1,3 +1,18 @@
+=begin
+
+Finds the Treasure Trove Winner and next item for drawing for the TownCrier.
+
+    author: HebrewToYou
+    game: Gemstone
+    tags: towncrier
+    version: 1.0
+
+    Notes: 
+
+    Usage: ;troving_reporter
+    
+=end
+
 cabinet = Hash.new
 
 HELLO_MESSAGE = "Here we go again!"
