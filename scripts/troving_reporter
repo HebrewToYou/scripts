@@ -17,8 +17,8 @@ before_dying do
 	puts cabinet.inspect
 end
 
-loop
-{	line = get
+loop {
+	line = get
 	
 	# Raffle draws and item drops to the rack
 	if line =~ /^A hidden panel beneath (.*) opens/
