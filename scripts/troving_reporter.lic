@@ -35,7 +35,7 @@ loop {
 		respond " "
 		
 	# Reporter is the winner of the raffle
-	elseif line =~ /^Congratulations!  You are now the proud owner of (.*?)\!/
+	elseif line =~ /^Congratulations!  You are now the proud owner of (.*?)!/
 		cabinet[:rack] = $1.to_s
 		cabinet[:winner] = Char.name
 		
