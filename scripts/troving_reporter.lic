@@ -1,14 +1,15 @@
 =begin
 	This script exists to report on the Ebon Gate Treasure Trove, specifically reporting the awarded item, the winner of said item, and the next item up for raffle
 	Author: HebrewToYou
-	Version: 1.0.0
+	Version: 1.0.1
         Date Created: 2019-10-16
-        Date Updated: 2019-10-16
+        Date Updated: 2019-10-17
         game: gs4
         tags: lich, ebon gate, eg, treasure trove, trove, raffle, towncrier
         Usage: ;troving_reporter
 
         1.0.0 (2019-10-16): Initial Version
+	1.0.1 (2019-10-17): Added support for properly reporting the results when the reporter wins the raffle
 =end
 
 cabinet = Hash.new
@@ -32,6 +33,30 @@ loop {
 		respond " "
 		respond "[TREASURE TROVE] #{HELLO_MESSAGE} #{interval} the next item at the Treasure Trove will pull for: #{cabinet[:shelf]}."
 		respond " "
+		
+	# Reporter is the winner of the raffle
+	elseif line =~ /^Congratulations!  You are now the proud owner of (.*)
+		cabinet[:rack] = $1.to_s
+		cabinet[:winner] = Char.name
+		
+		# A new item is added to the shelf
+		line = get
+		if line =~ /^A mechanical mithril hand emerges from beneath an open panel and replenishes the empty spot along the shelf with (.*?)\./
+			cabinet[:shelf] = $1.to_s
+		end
+		
+		# Known Winner and NOT End of Day
+		if cabinet[:rack] && cabinet[:winner] && cabinet[:shelf]
+			respond " "
+			respond "[TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{cabinet[:rack]}, it's #{cabinet[:winner]}! #{interval} the next item at the Treasure Trove will pull for: #{cabinet[:shelf]}."
+			respond " "
+		
+		# Known Winner and End of Day
+		elsif cabinet[:rack] && cabinet[:winner] && !cabinet[:shelf]
+			respond " "
+			respond "[TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{cabinet[:rack]}, it's #{cabinet[:winner]}! #{GOODBYE_MESSAGE}"
+			respond " "
+		end
 	
 	# Raffle draws and item drops to the rack
 	elsif line =~ /^A hidden panel beneath (.*) opens/
@@ -44,6 +69,7 @@ loop {
 		if line =~ /^And the winner of (.*) is... (.*)!/
 			cabinet[:winner] = $2.to_s
 		
+		# A new item is added to the shelf
 		elsif line =~ /^A mechanical mithril hand emerges from beneath an open panel and replenishes the empty spot along the shelf with (.*?)\./
 			cabinet[:shelf] = $1.to_s
 		end
