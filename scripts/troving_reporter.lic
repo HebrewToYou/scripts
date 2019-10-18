@@ -55,7 +55,7 @@ loop {
 		
 		# Known Winner and NOT End of Day
 		if cabinet[:rack] && cabinet[:winner] && cabinet[:shelf]
-			announcement = [TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{cabinet[:rack]}, it's #{cabinet[:winner]}! #{interval} the next item at the Treasure Trove will pull for: #{cabinet[:shelf]}."
+			announcement = "[TREASURE TROVE] Congratulations to the lucky Treasure Trove winner this hour for: #{cabinet[:rack]}, it's #{cabinet[:winner]}! #{interval} the next item at the Treasure Trove will pull for: #{cabinet[:shelf]}."
 			respond " "
 			respond #{announcement}
 			respond " "
