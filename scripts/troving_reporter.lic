@@ -25,7 +25,9 @@ announcement = ""
 channel = "TownCrier"
 
 before_dying do
-	puts cabinet.inspect
+	respond ""
+	respond "#{cabinet.inspect}"
+	respond ""
 end
 
 loop {
