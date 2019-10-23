@@ -2,30 +2,22 @@
 
 =end
 
-respond ""
-respond "Start"
-respond ""
-
 deepthoughts = proc { |server_string|
-	respond ""
-	respond "#{server_string}"
-	respond ""
 	if server_string =~ /<pushStream id=\"thoughts\"/
 		respond ""
 		respond "Match found"
 		respond ""
 		server_string.gsub '<pushStream id=\"thoughts\"', '<pushStream id=\"speech\"'
-	else
-    		server_string
+		respond ""
+		respond "#{server_string}"
+		respond ""
 	end
+	server_string
 }
 
 DownstreamHook.add('deepthoughts', deepthoughts)
 before_dying {
 	DownstreamHook.remove('deepthoughts')
-	respond ""
-	respond "Start"
-	respond ""
 }
 
 loop do
