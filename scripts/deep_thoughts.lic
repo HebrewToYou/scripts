@@ -4,8 +4,8 @@
 
 deepthoughts = proc { |server_string|
 
-	if server_string =~ /<pushstream id=\"thoughts\">/
-		server_string.gsub '<pushstream id=\"thoughts\">', '<pushstream id=\"speech\">'
+	if server_string =~ /<pushstream id=\"thoughts\"/
+		server_string.gsub '<pushstream id=\"thoughts\"', '<pushstream id=\"speech\"'
 	else
     	server_string
 	end
