@@ -1,0 +1,29 @@
+=begin
+	This script exists to take amunet SING and RECITE output and punt it over to the SPEECH window
+	Author: HebrewToYou
+	Version: 1.0.0
+        Date Created: 2019-10-23
+        Date Updated: 2019-10-23
+        game: gs4
+        tags: lich, recite, sing, speech
+        Usage: ;song_recital
+
+        1.0.0 (2019-10-23): Initial Version
+=end
+
+songrecital = proc { |server_string|
+	if server_string =~ /<preset id=\"speech\">You sing:/
+		server_string.gsub!("<preset id=\"speech\"", "<pushStream id=\"speech\"")
+		server_string.gsub!("</preset>", "")
+	end
+	server_string
+}
+
+DownstreamHook.add('songrecital', songrecital)
+before_dying {
+	DownstreamHook.remove('songrecital')
+}
+
+loop do
+	sleep 1
+end
