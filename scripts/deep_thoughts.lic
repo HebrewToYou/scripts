@@ -1,0 +1,20 @@
+=begin
+
+=end
+
+deepthoughts = proc { |server_string|
+
+	if server_string =~ /<pushstream id=\"thoughts\">/
+		server_string.gsub '<pushstream id=\"thoughts\">', '<pushstream id=\"speech\">'
+	else
+    	server_string
+	end
+}
+DownstreamHook.add('deepthoughts', deepthoughts)
+before_dying {
+    DownstreamHook.remove('deepthoughts')
+}
+
+loop do
+    sleep 1
+end
