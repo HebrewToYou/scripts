@@ -2,6 +2,10 @@
 
 =end
 
+respond ""
+respond "Start"
+respond ""
+
 deepthoughts = proc { |server_string|
 	respond ""
 	respond "#{server_string}"
@@ -19,6 +23,9 @@ deepthoughts = proc { |server_string|
 DownstreamHook.add('deepthoughts', deepthoughts)
 before_dying {
 	DownstreamHook.remove('deepthoughts')
+	respond ""
+	respond "Start"
+	respond ""
 }
 
 loop do
