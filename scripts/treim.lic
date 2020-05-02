@@ -541,7 +541,7 @@ before_dying {
 		}
 	end
 	if UserVars.treim[:attack_type] =~ /physical|ranged|bardass|scrub|dredd/
-		put "MSTRIKE SET FOCUS"
+		fput "mstrike set focus"
 	end
 }
 
@@ -633,7 +633,7 @@ loop {
 		#Script.unpause("tkill") if Script.running?("tkill")
 		Script.unpause("looploot") if Script.running?("looploot")
 		if UserVars.treim[:attack_type] =~ /physical|ranged|bardass|scrub|dredd/
-			put "MSTRIKE SET FOCUS #{UserVars.treim[:mstrike_limit]}"
+			fput "mstrike set focus #{UserVars.treim[:mstrike_limit]}"
 		end
 		UserVars.treim[:activescripts].each { |script|
 			start_script script
@@ -784,7 +784,7 @@ loop {
 		kill_script "tspam" if Script.running?("tspam")
 		kill_script "looploot" if Script.running?("looploot")
 		if UserVars.treim[:attack_type] =~ /physical|ranged|bardass|scrub|dredd/
-			put "MSTRIKE SET FOCUS"
+			fput "mstrike set focus"
 		end
 		until (Room.current.id != 25142) do
 			XMLData.reset
